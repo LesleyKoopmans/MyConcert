@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EF058AEC2EE5854900996223 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,7 @@
 			);
 			name = MyConcert;
 			packageProductDependencies = (
+				EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */,
 			);
 			productName = MyConcert;
 			productReference = EF058ADB2EE5854800996223 /* MyConcert.app */;
@@ -196,6 +202,9 @@
 			);
 			mainGroup = EF058AD22EE5854800996223;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EF058ADC2EE5854800996223 /* Products */;
 			projectDirPath = "";
@@ -597,6 +606,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF058AD32EE5854800996223 /* Project object */;
 }
