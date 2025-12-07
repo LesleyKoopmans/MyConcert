@@ -33,7 +33,7 @@ struct TabBarView: View {
                 }
                 .tag(3)
         }
-        .onChange(of: selectedItem) { oldValue, newValue in
+        .onChange(of: selectedItem) { oldValue, _ in
             if 2 == selectedItem {
                 self.isPresenting = true
                 self.selectedItem = oldValue
