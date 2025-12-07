@@ -9,7 +9,12 @@ import SwiftUI
 
 struct WelcomeView: View {
     
+    @Environment(AppState.self) private var root
+    
+    @State private var isSigninIn: Bool = false
     @State var imageName: String = Constants.randomImage
+    @State private var email: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         NavigationStack {
@@ -42,12 +47,25 @@ struct WelcomeView: View {
     
     private var ctaButtons: some View {
         VStack(spacing: 8) {
-            NavigationLink {
-                OnboardingCompletedView()
+            TextField("email", text: $email)
+                .textFieldStyle(.roundedBorder)
+            TextField("password", text: $password)
+                .textFieldStyle(.roundedBorder)
+            
+            Button {
+                onSignUpPressed()
             } label: {
-                Text("Get Started")
-                    .callToActionButton()
+                ZStack {
+                    if isSigninIn {
+                        ProgressView()
+                            .tint(.white)
+                    } else {
+                        Text("Sign up")
+                    }
+                }
+                .callToActionButton()
             }
+            .disabled(isSigninIn)
             
             Text("Already have an account? Sign in!")
                 .underline()
@@ -73,8 +91,20 @@ struct WelcomeView: View {
             }
         }
     }
+    
+    func onSignUpPressed() {
+        // other logic
+        isSigninIn = true
+        
+        Task {
+            try await Task.sleep(for: .seconds(3))
+            isSigninIn = false
+            root.updateViewState(showTabBarView: true)
+        }
+    }
 }
 
 #Preview {
     WelcomeView()
+        .environment(AppState())
 }
