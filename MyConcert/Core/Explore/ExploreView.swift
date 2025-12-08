@@ -15,17 +15,27 @@ struct ExploreView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    ExploreHeroCellView(imageName: "https://picsum.photos/600/500")
-                        .frame(height: 240)
-                    ExploreHeroCellView(imageName: "https://picsum.photos/400/600")
-                        .frame(height: 240)
-                    ExploreHeroCellView(imageName: "https://picsum.photos/600/650")
-                        .frame(height: 240)
-                    ExploreHeroCellView(imageName: "https://picsum.photos/500/600")
-                        .frame(height: 240)
+                    ForEach(concerts.groupedByMonth(), id: \.key) { (month, concertsInMonth) in
+                        ZStack(alignment: .topLeading) {
+                            VStack(spacing: 0) {
+                                ForEach(concertsInMonth) { concert in
+                                    ExploreHeroCellView(
+                                        title: concert.artist,
+                                        subtitle: concert.concertDate.formatted(date: .abbreviated, time: .omitted),
+                                        imageName: concert.concertHeaderImageUrl,
+                                        trailingIcon: "star.fill",
+                                        trailingIconColor: .yellow,
+                                        trailingText: concert.rating
+                                    )
+                                    .frame(height: 260)
+                                }
+                            }
+                            // Header overlay bovenop content
+                            StickyHeader(month: month)
+                        }
+                    }
                 }
             }
-            .ignoresSafeArea()
         }
     }
 }
