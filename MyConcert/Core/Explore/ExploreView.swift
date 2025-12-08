@@ -8,10 +8,24 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
+    let concerts: [ConcertModel] = ConcertModel.mocks
+    
     var body: some View {
         NavigationStack {
-            Text("Explore")
-                .navigationTitle("Explore")
+            ScrollView {
+                VStack(spacing: 0) {
+                    ExploreHeroCellView(imageName: "https://picsum.photos/600/500")
+                        .frame(height: 240)
+                    ExploreHeroCellView(imageName: "https://picsum.photos/400/600")
+                        .frame(height: 240)
+                    ExploreHeroCellView(imageName: "https://picsum.photos/600/650")
+                        .frame(height: 240)
+                    ExploreHeroCellView(imageName: "https://picsum.photos/500/600")
+                        .frame(height: 240)
+                }
+            }
+            .ignoresSafeArea()
         }
     }
 }
