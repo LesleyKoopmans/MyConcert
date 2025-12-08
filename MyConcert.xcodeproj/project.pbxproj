@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */; };
+		EF46A2602EE6E2F40047E9FF /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = EF46A25F2EE6E2F40047E9FF /* SwiftfulUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF46A2602EE6E2F40047E9FF /* SwiftfulUI in Frameworks */,
 				EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +121,7 @@
 			name = MyConcert;
 			packageProductDependencies = (
 				EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */,
+				EF46A25F2EE6E2F40047E9FF /* SwiftfulUI */,
 			);
 			productName = MyConcert;
 			productReference = EF058ADB2EE5854800996223 /* MyConcert.app */;
@@ -204,6 +207,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				EF46A25E2EE6E2F40047E9FF /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EF058ADC2EE5854800996223 /* Products */;
@@ -616,6 +620,14 @@
 				minimumVersion = 3.1.4;
 			};
 		};
+		EF46A25E2EE6E2F40047E9FF /* XCRemoteSwiftPackageReference "SwiftfulUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -623,6 +635,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		EF46A25F2EE6E2F40047E9FF /* SwiftfulUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF46A25E2EE6E2F40047E9FF /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
+			productName = SwiftfulUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

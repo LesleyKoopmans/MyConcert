@@ -13,7 +13,9 @@ struct ExploreView: View {
     
     var body: some View {
         NavigationStack {
+            
             ScrollView {
+                
                 VStack(spacing: 0) {
                     ForEach(concerts.groupedByMonth(), id: \.key) { (month, concertsInMonth) in
                         ZStack(alignment: .topLeading) {
@@ -28,6 +30,10 @@ struct ExploreView: View {
                                         trailingText: concert.rating
                                     )
                                     .frame(height: 260)
+                                    .anyButton(.plain) {
+                                        
+                                    }
+                                    
                                 }
                             }
                             // Header overlay bovenop content
@@ -36,6 +42,7 @@ struct ExploreView: View {
                     }
                 }
             }
+            .ignoresSafeArea()
         }
     }
 }

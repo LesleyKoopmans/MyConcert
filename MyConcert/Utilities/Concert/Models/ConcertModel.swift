@@ -48,6 +48,38 @@ struct ConcertModel: Identifiable, Hashable {
         self.dateCreated = dateCreated
     }
     
+    mutating func updateConcertHeaderImageUrl(imageUrl: String) {
+        concertHeaderImageUrl = imageUrl
+    }
+    
+    mutating func updateConcertMediaImageUrl(imageUrl: [String]) {
+        if concertMedia == nil {
+            concertMedia = [String]()
+            for image in imageUrl {
+                concertMedia?.append(image)
+            }
+        } else {
+            for image in imageUrl {
+                concertMedia?.append(image)
+            }
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case artist
+        case description
+        case rating
+        case concertGenre = "concert_genre"
+        case venue
+        case room
+        case concertHeaderImageUrl = "concert_header_image_url"
+        case concertMedia = "concert_media"
+        case authorId = "author_id"
+        case concertDate = "concert_date"
+        case dateCreated = "date_created"
+    }
+    
     static var mock: Self {
         mocks[0]
     }

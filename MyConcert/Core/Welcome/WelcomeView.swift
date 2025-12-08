@@ -52,19 +52,19 @@ struct WelcomeView: View {
             TextField("password", text: $password)
                 .textFieldStyle(.roundedBorder)
             
-            Button {
-                onSignUpPressed()
-            } label: {
-                ZStack {
-                    if isSigninIn {
-                        ProgressView()
-                            .tint(.white)
-                    } else {
-                        Text("Sign up")
-                    }
+            ZStack {
+                if isSigninIn {
+                    ProgressView()
+                        .tint(.white)
+                } else {
+                    Text("Sign up")
                 }
-                .callToActionButton()
             }
+            .callToActionButton()
+            .anyButton(.press) {
+                onSignUpPressed()
+            }
+            
             .disabled(isSigninIn)
             
             Text("Already have an account? Sign in!")
