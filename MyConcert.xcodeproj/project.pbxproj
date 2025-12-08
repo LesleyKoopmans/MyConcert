@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF040D4A2EE70C400021231C /* SwiftfulUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = EF040D492EE70C400021231C /* SwiftfulUtilities */; };
 		EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */; };
 		EF46A2602EE6E2F40047E9FF /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = EF46A25F2EE6E2F40047E9FF /* SwiftfulUI */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 			files = (
 				EF46A2602EE6E2F40047E9FF /* SwiftfulUI in Frameworks */,
 				EF058BE52EE59ECE00996223 /* SDWebImageSwiftUI in Frameworks */,
+				EF040D4A2EE70C400021231C /* SwiftfulUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +124,7 @@
 			packageProductDependencies = (
 				EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */,
 				EF46A25F2EE6E2F40047E9FF /* SwiftfulUI */,
+				EF040D492EE70C400021231C /* SwiftfulUtilities */,
 			);
 			productName = MyConcert;
 			productReference = EF058ADB2EE5854800996223 /* MyConcert.app */;
@@ -208,6 +211,7 @@
 			packageReferences = (
 				EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				EF46A25E2EE6E2F40047E9FF /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
+				EF040D482EE70C400021231C /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EF058ADC2EE5854800996223 /* Products */;
@@ -612,6 +616,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EF040D482EE70C400021231C /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUtilities";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.6;
+			};
+		};
 		EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -631,6 +643,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EF040D492EE70C400021231C /* SwiftfulUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF040D482EE70C400021231C /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */;
+			productName = SwiftfulUtilities;
+		};
 		EF058BE42EE59ECE00996223 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EF058BE32EE59ECE00996223 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

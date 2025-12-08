@@ -18,6 +18,25 @@ extension View {
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     
+    func stickyBottomButton() -> some View {
+        self
+            .font(.headline)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 70)
+            .background(.accent)
+    }
+    
+    func navigationBarButton(alignmentPadding: Edge.Set, alignmentFrame: Alignment, showBackground: Bool) -> some View {
+        self
+            .font(.title3)
+            .padding(10)
+            .background(showBackground ? Color.black.opacity(0.001) : .accent.opacity(0.7))
+            .clipShape(Circle())
+            .padding(alignmentPadding, 16)
+            .frame(maxWidth: .infinity, alignment: alignmentFrame)
+    }
+    
     func tappableBackground() -> some View {
         background(Color.black.opacity(0.001))
     }

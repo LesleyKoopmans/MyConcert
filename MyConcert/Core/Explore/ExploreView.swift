@@ -31,7 +31,7 @@ struct ExploreView: View {
                                     )
                                     .frame(height: 260)
                                     .anyButton(.plain) {
-                                        
+                                        onConcertPressed(concert: concert)
                                     }
                                     
                                 }
@@ -44,6 +44,10 @@ struct ExploreView: View {
             }
             .ignoresSafeArea()
         }
+    }
+    
+    private func onConcertPressed(concert: ConcertModel) {
+        
     }
 }
 

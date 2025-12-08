@@ -15,13 +15,60 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Button {
-                    onSignoutPressed()
-                } label: {
-                    Text("Sign out")
-                }
+                
+                accountSection
+                
+                applicationSection
             }
             .navigationTitle("Settings")
+        }
+    }
+    
+    private var accountSection: some View {
+        Section {
+            Text("Sign out")
+                .rowFormatting()
+                .anyButton(.highlight) {
+                    onSignoutPressed()
+                }
+                .removeListRowFormatting()
+            Text("Delete account")
+                .foregroundStyle(.red)
+                .rowFormatting()
+                .anyButton(.highlight) {
+                    
+                }
+                .removeListRowFormatting()
+        } header: {
+            Text("Account")
+        }
+    }
+    
+    private var applicationSection: some View {
+        Section {
+            HStack(spacing: 8) {
+                Text("Version")
+                Spacer(minLength: 0)
+                Text(Utilities.appVersion ?? "")
+            }
+            
+            HStack(spacing: 8) {
+                Text("Build Number")
+                Spacer(minLength: 0)
+                Text(Utilities.buildNumber ?? "")
+            }
+            
+            Text("Contact Us")
+                .foregroundStyle(.accent)
+                .rowFormatting()
+                .anyButton(.highlight) {
+                    
+                }
+                .removeListRowFormatting()
+        } header: {
+            Text("Application")
+        } footer: {
+            Text("Created by Lesley Koopmans.")
         }
     }
     
@@ -32,6 +79,16 @@ struct SettingsView: View {
             try? await Task.sleep(for: .seconds(1))
             appState.updateViewState(showTabBarView: false)
         }
+    }
+}
+
+fileprivate extension View {
+    func rowFormatting() -> some View {
+        self
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
+            .background(Color(uiColor: .systemBackground))
     }
 }
 
