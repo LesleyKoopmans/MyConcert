@@ -68,7 +68,7 @@ struct UserModel: Codable {
         case creationVersion = "creation_version"
         case lastSignInDate = "last_sign_in_date"
         case didCompleteOnboarding = "did_complete_onboarding"
-        
+        case profileImageUrl = "profile_image_url"
     }
     
     static var mock: Self {

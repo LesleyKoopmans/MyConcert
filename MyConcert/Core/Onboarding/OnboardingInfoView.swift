@@ -11,6 +11,7 @@ import PhotosUI
 struct OnboardingInfoView: View {
     
     @Environment(AppState.self) private var root
+    @Environment(UserManager.self) private var userManager
     
     @State private var firstName: String = ""
     @State private var lastName: String = ""
@@ -80,6 +81,7 @@ struct OnboardingInfoView: View {
         isSigninUp = true
         
         Task {
+            try await userManager.markOnboardingCompletedForCurrentUser(profileImageUrl: "test", firstName: firstName, lastName: lastName, username: username)
             isSigninUp = false
             root.updateViewState(showTabBarView: true)
         }
@@ -94,4 +96,5 @@ struct OnboardingInfoView: View {
 #Preview {
     OnboardingInfoView()
         .environment(AppState())
+        .environment(UserManager(service: MockUserService(), currentUser: nil))
 }
