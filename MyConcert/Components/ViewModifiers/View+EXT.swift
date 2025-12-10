@@ -56,4 +56,19 @@ extension View {
             ], startPoint: .top, endPoint: .bottom)
         )
     }
+    
+    func customTextFieldAccentColor() -> some View {
+        self
+            .padding(8)
+            .background(
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color(uiColor: .systemBackground))
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.accentColorLightGreen, lineWidth: 1)
+                }
+            )
+            .foregroundStyle(.accent)
+    }
 }

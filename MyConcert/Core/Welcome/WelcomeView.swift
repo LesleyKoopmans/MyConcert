@@ -48,26 +48,17 @@ struct WelcomeView: View {
     private var ctaButtons: some View {
         VStack(spacing: 8) {
             TextField("email", text: $email)
-                .textFieldStyle(.roundedBorder)
+                .customTextFieldAccentColor()
             TextField("password", text: $password)
-                .textFieldStyle(.roundedBorder)
+                .customTextFieldAccentColor()
             
-            ZStack {
-                if isSigninIn {
-                    ProgressView()
-                        .tint(.white)
-                } else {
-                    Text("Sign up")
-                }
-            }
-            .callToActionButton()
-            .anyButton(.press) {
-                onSignUpPressed()
-            }
+            AsyncCallToActionButton(isLoading: isSigninIn, title: "Sign In", action: {
+                onSignInPressed()
+            })
             
             .disabled(isSigninIn)
             
-            Text("Already have an account? Sign in!")
+            Text("Don't have an account yet? Sign Up!")
                 .underline()
                 .font(.body)
                 .padding(8)
@@ -92,7 +83,7 @@ struct WelcomeView: View {
         }
     }
     
-    func onSignUpPressed() {
+    func onSignInPressed() {
         // other logic
         isSigninIn = true
         

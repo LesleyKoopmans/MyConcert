@@ -13,9 +13,13 @@ struct ConcertDetailView: View {
     
     @State var concert: ConcertModel = .mock
     
+    var concertId: String = ConcertModel.mock.id
+    
     @State private var currentUser: UserModel = UserModel.mock
     @State private var showHeader: Bool = true
     @State private var showImagePicker: Bool = false
+    
+    @State private var path: [NavigationPathOption] = []
     
     var body: some View {
         ZStack {
@@ -29,6 +33,7 @@ struct ConcertDetailView: View {
             }
             headerSection
         }
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     private var imageSection: some View {
@@ -54,11 +59,14 @@ struct ConcertDetailView: View {
                     Text(concert.concertDate.formatted(date: .abbreviated, time: .omitted))
                 }
                 Spacer()
-                HStack {
-                    if let genre = concert.concertGenre {
+                if let genre = concert.concertGenre {
+                    HStack {
                         Image(systemName: "music.note")
                             .foregroundStyle(.accent)
                         Text(genre.rawValue.capitalized)
+                    }
+                    .anyButton {
+                        onGenrePressed(genre: genre, imageName: genre.headerImage)
                     }
                 }
             }
@@ -170,6 +178,10 @@ struct ConcertDetailView: View {
     
     private func onAddMediaPressed() {
         showImagePicker = true
+    }
+    
+    private func onGenrePressed(genre: ConcertGenre, imageName: String) {
+        path.append(.genre(genre: genre, imageName: imageName))
     }
 }
 

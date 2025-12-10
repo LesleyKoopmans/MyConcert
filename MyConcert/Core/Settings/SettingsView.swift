@@ -12,6 +12,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
     
+    @State private var showAlert: AnyAppAlert?
+    
     var body: some View {
         NavigationStack {
             List {
@@ -22,6 +24,8 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
         }
+        .showCustomAlert(alert: $showAlert)
+
     }
     
     private var accountSection: some View {
@@ -36,7 +40,7 @@ struct SettingsView: View {
                 .foregroundStyle(.red)
                 .rowFormatting()
                 .anyButton(.highlight) {
-                    
+                    onDeleteAccountPressed()
                 }
                 .removeListRowFormatting()
         } header: {
@@ -79,6 +83,16 @@ struct SettingsView: View {
             try? await Task.sleep(for: .seconds(1))
             appState.updateViewState(showTabBarView: false)
         }
+    }
+    
+    func onDeleteAccountPressed() {
+        showAlert = AnyAppAlert(title: "Delete Account?", subtitle: "Are you sure you want to delete your account?", buttons: {
+            AnyView(
+                Button("Delete", role: .destructive) {
+                    
+                }
+            )
+        })
     }
 }
 

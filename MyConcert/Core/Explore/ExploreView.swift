@@ -4,15 +4,16 @@
 //
 //  Created by Lesley Koopmans on 07/12/2025.
 //
-
 import SwiftUI
 
 struct ExploreView: View {
     
     let concerts: [ConcertModel] = ConcertModel.mocks
     
+    @State private var path: [NavigationPathOption] = []
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             
             ScrollView {
                 
@@ -43,11 +44,13 @@ struct ExploreView: View {
                 }
             }
             .ignoresSafeArea()
+            .navigationDestinationForCoreModule(path: $path)
         }
+        
     }
     
     private func onConcertPressed(concert: ConcertModel) {
-        
+        path.append(.concert(concert: concert, concertId: concert.id))
     }
 }
 

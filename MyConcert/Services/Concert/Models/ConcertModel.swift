@@ -95,10 +95,6 @@ struct ConcertModel: Identifiable, Hashable {
     
 }
 
-enum ConcertGenre: String, CaseIterable, Hashable {
-    case soul, hiphop, blues, rock, jazz, country, pop, metal
-}
-
 extension Array where Element == ConcertModel {
     func groupedByMonth() -> [(key: String, value: [ConcertModel])] {
         let formatter = DateFormatter()

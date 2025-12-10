@@ -10,6 +10,9 @@ struct UserModel {
     
     let id: String
     let email: String?
+    let firstName: String?
+    let lastName: String?
+    let username: String?
     let isAnonymous: Bool?
     let creationDate: Date?
     let creationVersion: String?
@@ -20,6 +23,9 @@ struct UserModel {
     init(
         id: String,
         email: String? = nil,
+        firstName: String? = nil,
+        lastName: String? = nil,
+        username: String? = nil,
         isAnonymous: Bool? = nil,
         creationDate: Date? = nil,
         creationVersion: String? = nil,
@@ -29,6 +35,9 @@ struct UserModel {
     ) {
         self.id = id
         self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
+        self.username = username
         self.isAnonymous = isAnonymous
         self.creationDate = creationDate
         self.creationVersion = creationVersion
@@ -43,8 +52,8 @@ struct UserModel {
     
     static var mocks: [Self] {
         return [
-            UserModel(id: "mock_user_1", creationDate: .now, didCompleteOnboarding: true, profileImageUrl: "https://picsum.photos/600/600"),
-            UserModel(id: UUID().uuidString, creationDate: .now, didCompleteOnboarding: false, profileImageUrl: "https://picsum.photos/600/500"),
+            UserModel(id: "mock_user_1", firstName: "Lesley", lastName: "Koopmans", username: "wessellk", creationDate: .now, didCompleteOnboarding: true, profileImageUrl: "https://picsum.photos/600/600"),
+            UserModel(id: UUID().uuidString, firstName: "Tim", lastName: "Kroese", username: "timmie", creationDate: .now, didCompleteOnboarding: false, profileImageUrl: "https://picsum.photos/600/500"),
             UserModel(id: UUID().uuidString, creationDate: .now, didCompleteOnboarding: true, profileImageUrl: nil),
             UserModel(id: UUID().uuidString, creationDate: .now, didCompleteOnboarding: true, profileImageUrl: "https://picsum.photos/500/500")
         ]

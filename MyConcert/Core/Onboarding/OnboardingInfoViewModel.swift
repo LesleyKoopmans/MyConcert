@@ -1,0 +1,31 @@
+//
+//  OnboardingInfoViewModel.swift
+//  MyConcert
+//
+//  Created by Lesley Koopmans on 10/12/2025.
+//
+import Foundation
+import PhotosUI
+import SwiftUI
+
+@MainActor
+class OnboardingInfoViewModel: ObservableObject {
+    
+    @Published var selectedImage: PhotosPickerItem? {
+        didSet { Task { await loadImage(fromItem: selectedImage) } }
+    }
+    
+    @Published var image: Image?
+    @Published var uiImage: UIImage?
+    
+    func loadImage(fromItem item: PhotosPickerItem?) async {
+        guard let item = item else { return }
+        
+        guard let data = try? await item.loadTransferable(type: Data.self) else { return }
+        
+        guard let uiImage = UIImage(data: data) else { return }
+        
+        self.uiImage = uiImage
+        self.image = Image(uiImage: uiImage)
+    }
+}
