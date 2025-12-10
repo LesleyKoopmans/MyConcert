@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct UserModel {
+struct UserModel: Codable {
     
     let id: String
     let email: String?
@@ -44,6 +44,31 @@ struct UserModel {
         self.lastSignInDate = lastSignInDate
         self.didCompleteOnboarding = didCompleteOnboarding
         self.profileImageUrl = profileImageUrl
+    }
+    
+    init(auth: UserAuthInfo, creationVersion: String?) {
+        self.init(
+            id: auth.uid,
+            email: auth.email,
+            isAnonymous: auth.isAnonymous,
+            creationDate: auth.creationDate,
+            creationVersion: creationVersion,
+            lastSignInDate: auth.lastSignInDate,
+        )
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case email = "email"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case username = "username"
+        case isAnonymous = "is_anonymous"
+        case creationDate = "creation_date"
+        case creationVersion = "creation_version"
+        case lastSignInDate = "last_sign_in_date"
+        case didCompleteOnboarding = "did_complete_onboarding"
+        
     }
     
     static var mock: Self {

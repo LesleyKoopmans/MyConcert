@@ -11,6 +11,7 @@ struct WelcomeView: View {
     
     @Environment(AppState.self) private var root
     @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
     
     @State private var isSigninIn: Bool = false
     @State var imageName: String = Constants.randomImage
@@ -147,10 +148,12 @@ struct WelcomeView: View {
         Task {
             do {
                 let result = try await authManager.signInApple()
+                try await userManager.logIn(auth: result.user, isNewUser: result.isNewUser)
                 root.updateViewState(showTabBarView: true)
-                print("Did sign in with Apple")
+                print("Did sign in with Apple! \(result.user.uid)")
             } catch {
                 print("Error sigining in with Apple")
+                print(error)
             }
         }
     }
