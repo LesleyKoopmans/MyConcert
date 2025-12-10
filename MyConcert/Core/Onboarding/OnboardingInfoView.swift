@@ -96,5 +96,5 @@ struct OnboardingInfoView: View {
 #Preview {
     OnboardingInfoView()
         .environment(AppState())
-        .environment(UserManager(service: MockUserService(), currentUser: nil))
+        .environment(UserManager(services: MockUserServices(user: .mock)))
 }
