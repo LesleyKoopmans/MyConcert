@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingSignUpView: View {
     
+    @Environment(\.authService) private var authService
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isSigninUp: Bool = false
@@ -33,9 +35,10 @@ struct OnboardingSignUpView: View {
                 TextField("password", text: $password)
                     .customTextFieldAccentColor()
                 
-                AsyncCallToActionButton(isLoading: isSigninUp, title: "Sign Up", action: {
-                    onSignUpPressed()
-                })
+                onSignUpEmailPressed()
+//                AsyncCallToActionButton(isLoading: isSigninUp, title: "Sign Up", action: {
+//                    onSignUpPressed()
+//                })
                 
                 .disabled(isSigninUp)
                 
@@ -47,22 +50,42 @@ struct OnboardingSignUpView: View {
     private var signUpWithSocialSection: some View {
         Section {
             VStack(alignment: .leading, spacing: 8) {
-                Button("Facebook") {
-                    
-                }
-                Button("Google") {
-                    
-                }
-                Button("Apple") {
-                    
-                }
+                SignInWithAppleButtonView(type: .signUp, style: .black, cornerRadius: 16)
+                    .frame(height: 55)
+                    .anyButton(.press) {
+                        onSignInApplePressed()
+                    }
             }
             .removeListRowFormatting()
         }
     }
     
-    func onSignUpPressed() {
-        
+    private func onSignUpEmailPressed() -> some View {
+        NavigationLink {
+            OnboardingInfoView()
+        } label: {
+            Text("Sign Up")
+                .callToActionButton()
+        }
+    }
+    
+    func onSignInApplePressed() {
+        Task {
+            do {
+                let result = try await authService.signInApple()
+                
+                NavigationLink {
+                    OnboardingInfoView()
+                } label: {
+                    Text("Sign Up")
+                        .callToActionButton()
+                }
+                
+                print("Did sign in with Apple")
+            } catch {
+                print("Error sigining in with Apple")
+            }
+        }
     }
 }
 

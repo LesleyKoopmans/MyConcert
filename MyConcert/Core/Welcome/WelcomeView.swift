@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     
     @Environment(AppState.self) private var root
+    @Environment(\.authService) private var authService
     
     @State private var isSigninIn: Bool = false
     @State var imageName: String = Constants.randomImage
@@ -53,19 +54,67 @@ struct WelcomeView: View {
                 .customTextFieldAccentColor()
             
             AsyncCallToActionButton(isLoading: isSigninIn, title: "Sign In", action: {
-                onSignInPressed()
+                onSignInEmailPressed()
             })
             
+            Text("or sign in with")
+            HStack {
+                ZStack {
+                    Rectangle()
+                    Image(systemName: "apple.logo")
+                        .font(.title)
+                        .foregroundStyle(.white)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .frame(width: 60, height: 60)
+                .asButton(.press) {
+                    onSignInApplePressed()
+                }
+                ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .shadow(radius: 2)
+
+                            Text("G")
+                                .font(.system(size: 40, weight: .bold))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [
+                                            Color.red,
+                                            Color.yellow,
+                                            Color.green,
+                                            Color.blue
+                                        ],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                        }
+                        .frame(width: 60, height: 60)
+
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .frame(width: 60, height: 60)
+                ZStack {
+                            Color(red: 59/255, green: 89/255, blue: 152/255) // Facebook-blauw
+                            Text("F")
+                                .font(.system(size: 40, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 60, height: 60)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
             .disabled(isSigninIn)
             
-            Text("Don't have an account yet? Sign Up!")
-                .underline()
-                .font(.body)
-                .padding(8)
-                .tappableBackground()
-                .onTapGesture {
-                    
-                }
+            NavigationLink {
+                OnboardingSignUpView()
+            } label: {
+                Text("Don't have an account yet? Sign Up!")
+                    .underline()
+                    .font(.body)
+                    .foregroundStyle(.black)
+                    .padding(8)
+                    .tappableBackground()
+            }
         }
     }
     
@@ -83,7 +132,7 @@ struct WelcomeView: View {
         }
     }
     
-    func onSignInPressed() {
+    func onSignInEmailPressed() {
         // other logic
         isSigninIn = true
         
@@ -91,6 +140,18 @@ struct WelcomeView: View {
             try await Task.sleep(for: .seconds(3))
             isSigninIn = false
             root.updateViewState(showTabBarView: true)
+        }
+    }
+    
+    func onSignInApplePressed() {
+        Task {
+            do {
+                let result = try await authService.signInApple()
+                root.updateViewState(showTabBarView: true)
+                print("Did sign in with Apple")
+            } catch {
+                print("Error sigining in with Apple")
+            }
         }
     }
 }

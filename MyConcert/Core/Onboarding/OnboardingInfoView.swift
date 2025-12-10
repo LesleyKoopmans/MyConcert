@@ -10,11 +10,13 @@ import PhotosUI
 
 struct OnboardingInfoView: View {
     
+    @Environment(AppState.self) private var root
+    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var username: String = ""
     @State private var imagePickerPresented: Bool = false
-    
+
     @State private var isSigninUp: Bool = false
     
     @StateObject var viewModel = OnboardingInfoViewModel()
@@ -75,7 +77,12 @@ struct OnboardingInfoView: View {
     }
     
     func onSignUpPressed() {
+        isSigninUp = true
         
+        Task {
+            isSigninUp = false
+            root.updateViewState(showTabBarView: true)
+        }
     }
     
     func onProfileImageButtonPressed() {
@@ -86,4 +93,5 @@ struct OnboardingInfoView: View {
 
 #Preview {
     OnboardingInfoView()
+        .environment(AppState())
 }
