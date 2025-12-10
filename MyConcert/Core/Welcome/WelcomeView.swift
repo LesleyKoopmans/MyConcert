@@ -10,7 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     
     @Environment(AppState.self) private var root
-    @Environment(\.authService) private var authService
+    @Environment(AuthManager.self) private var authManager
     
     @State private var isSigninIn: Bool = false
     @State var imageName: String = Constants.randomImage
@@ -146,7 +146,7 @@ struct WelcomeView: View {
     func onSignInApplePressed() {
         Task {
             do {
-                let result = try await authService.signInApple()
+                let result = try await authManager.signInApple()
                 root.updateViewState(showTabBarView: true)
                 print("Did sign in with Apple")
             } catch {

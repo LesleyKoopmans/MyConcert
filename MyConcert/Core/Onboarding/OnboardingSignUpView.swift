@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingSignUpView: View {
     
-    @Environment(\.authService) private var authService
+    @Environment(AuthManager.self) private var authManager
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -72,7 +72,7 @@ struct OnboardingSignUpView: View {
     func onSignInApplePressed() {
         Task {
             do {
-                let result = try await authService.signInApple()
+                let result = try await authManager.signInApple()
                 
                 NavigationLink {
                     OnboardingInfoView()
